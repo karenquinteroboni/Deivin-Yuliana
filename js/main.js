@@ -242,7 +242,7 @@
 
   /* ---------- enlaces configurables ---------- */
   if (C.dressCodeUrl) $('#dressLink').href = C.dressCodeUrl;
-  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src + '?v=6'; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
+  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src + '?v=8'; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
 
   /* ---------- agregar al calendario (.ics) ---------- */
   $('#addCal').addEventListener('click', () => {
