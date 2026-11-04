@@ -100,7 +100,7 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
 .intro.walking .walk{opacity:1;visibility:visible}
 .walk video{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
 .walk-shade{position:absolute;inset:0;background:linear-gradient(0deg,#050b1ecc,transparent 45%),linear-gradient(180deg,#050b1e88,transparent 30%)}
-.walk-title{position:absolute;left:0;right:0;bottom:16vh;text-align:center;font-family:var(--script);font-size:clamp(42px,11.5vw,64px);line-height:1.1;
+.walk-title{position:absolute;left:0;right:0;bottom:16vh;text-align:center;font-family:var(--serif);font-weight:500;letter-spacing:.03em;font-size:clamp(42px,11.6vw,66px);line-height:1.1;
   color:var(--gold-l);text-shadow:0 2px 24px #000a;opacity:0;transform:translateY(14px);transition:opacity 1.4s,transform 1.4s}
 .intro.walking .walk-title{opacity:1;transform:none;transition-delay:1.6s}
 .skip{position:absolute;right:max(16px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
@@ -129,7 +129,7 @@ body:not(.locked) .topbar{opacity:1}
    Pinyon Script solo para los nombres de los novios;
    Jost únicamente en enlaces y botones (.btn, .skip).
    Escala: nombres 46–64 · h2 27–34 · lead 21–24 · h3 22 · cuerpo 18–20 · etiqueta 13 */
-:root{--fs-body:clamp(18px,4.7vw,20px);--fs-lead:clamp(21px,5.4vw,24px);--fs-h2:clamp(26px,7vw,34px);--fs-label:13px;--fs-names:clamp(46px,13vw,64px)}
+:root{--fs-body:clamp(18px,4.7vw,20px);--fs-lead:clamp(21px,5.4vw,24px);--fs-h2:clamp(26px,7vw,34px);--fs-label:13px;--fs-names:clamp(42px,11.6vw,66px)}
 body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 
 /* ============ SECCIONES (papel vegetal) ============ */
@@ -139,15 +139,15 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 .sec::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:multiply;pointer-events:none}
 .sec>*:not(.wm),.bye>.reveal{position:relative}
 .hero+.sec{box-shadow:0 -1px 0 var(--gold-line)}
-.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=5) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
+.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=6) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
 
 /* fondo fijo que se transparenta (y se desenfoca) a través de cada hoja */
 .backdrop{position:fixed;inset:-30px;z-index:-1;pointer-events:none;filter:blur(6px) saturate(1.05);
   background:radial-gradient(circle at 18% 12%,#3a5fc4 0,transparent 38%),radial-gradient(circle at 88% 38%,#dcbd6e 0,transparent 26%),
     radial-gradient(circle at 12% 70%,#dcbd6e 0,transparent 22%),radial-gradient(circle at 80% 92%,#3a5fc4 0,transparent 40%),
     linear-gradient(180deg,#6d8ad2,#34519f)}
-.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=5) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
-.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=5) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=5) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=5) 104% 20%/auto 70vh no-repeat;opacity:.45}
+.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=6) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
+.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=6) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=6) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=6) 104% 20%/auto 70vh no-repeat;opacity:.45}
 
 /* ---- texto ---- */
 .eyebrow{font-family:var(--serif);font-weight:600;font-size:var(--fs-label);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);padding-left:.3em}
@@ -157,8 +157,8 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 .sec-sub{font-style:italic;font-weight:500;font-size:calc(var(--fs-body) + 1px);color:var(--muted);margin:14px 0 36px}
 .lead{font-size:var(--fs-lead);font-style:italic;font-weight:500;line-height:1.4;color:var(--ink-h)}
 .body{max-width:34em;margin:16px auto 0;color:var(--text)}
-.names{font-family:var(--script);font-weight:400;line-height:1.1;color:var(--gold-ink)}
-.names span,.walk-title span{font-family:var(--script);font-style:normal;font-weight:400;font-size:.92em;margin:0 .1em;color:inherit}
+.names{font-family:var(--serif);font-weight:500;font-style:var(--names-style,normal);letter-spacing:.03em;line-height:1.1;color:var(--gold-ink)}
+.names span,.walk-title span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.8em;margin:0 .14em;color:inherit}
 
 /* marco ornamental casi transparente */
 .frame{position:relative;max-width:560px;margin:0 auto;padding:44px 26px;border:1px solid #c9a24d99;border-radius:6px;background:#ffffff59;box-shadow:0 14px 34px #1d2f7014}
@@ -313,7 +313,7 @@ textarea::placeholder{color:#55608f;opacity:1}
 .intro.walking .stage{visibility:hidden}
 
 /* ---- iniciales D y Y con la tipografía del monograma (Bodoni Moda) ---- */
-.names .ini,.walk-title .ini{font-family:'Bodoni Moda','Playfair Display',Georgia,serif;font-style:normal;font-weight:600;font-size:1.08em;margin:0;letter-spacing:0;line-height:1}
+.names .ini,.walk-title .ini{font-family:var(--serif);font-style:inherit;font-weight:inherit;font-size:1em;margin:0;letter-spacing:inherit;line-height:1}
 
 /* ---- cierre: nombres en su posición, logo debajo y sin sombra ---- */
 .bye{align-items:flex-start}
@@ -326,6 +326,6 @@ textarea::placeholder{color:#55608f;opacity:1}
   .bye>.reveal{padding-top:0}
   .bye>img.bye-bg{object-position:50% 36%}
   .bye .lead{font-size:20px}
-  .bye .names{font-size:clamp(44px,6vw,56px);margin-top:4px}
+  .bye .names{font-size:clamp(40px,5vw,52px);margin-top:4px}
   .bye-mono{width:118px;margin-top:14px}
 }
