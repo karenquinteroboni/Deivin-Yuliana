@@ -20,11 +20,12 @@ La tarjeta consulta el nombre y los cupos de ese código; el invitado puede conf
 El tope se valida **en el servidor** (`Code.gs`), no solo en pantalla.
 
 ### Puesta en marcha (una sola vez)
-1. Cuando llegue la lista: `python3 tools/preparar_invitados.py lista.csv` (columnas `Invitado,Cupos`). Genera `invitados_confirmaciones.xlsx`.
-2. En Google Drive: subir ese archivo y abrirlo como Google Sheet. **Extensiones → Apps Script**, pegar `apps-script/Code.gs`, guardar.
-3. **Implementar → Nueva implementación → Aplicación web**: ejecutar como *Yo*, acceso *Cualquier persona*. Copiar la URL `/exec`.
-4. Pegar esa URL en `rsvpEndpoint` de `js/config.js`. (Si se edita `Code.gs` después, hay que crear una **nueva versión** de la implementación.)
-5. Enviar a cada invitado su enlace (columna *Enlace personalizado*).
+1. Crear una Google Sheet nueva (o subir `plantilla_invitados.xlsx` y abrirla como Google Sheet).
+2. **Extensiones → Apps Script**, borrar lo que haya, pegar `apps-script/Code.gs` y guardar. Recargar la hoja: aparece el menú **Invitación**.
+3. Pegar la lista en la hoja `Invitados` (B = nombre, C = cupos) y usar **Invitación → Generar códigos y enlaces**. (Alternativa con Python: `tools/preparar_invitados.py`.)
+4. **Implementar → Nueva implementación → Aplicación web**: ejecutar como *Yo*, acceso *Cualquier persona*. Copiar la URL `/exec`.
+5. Pegar esa URL en `rsvpEndpoint` de `js/config.js`. (Si se edita `Code.gs` después, hay que crear una **nueva versión** de la implementación.)
+6. Enviar a cada invitado su enlace (columna *Enlace personalizado*).
 
 Mientras `rsvpEndpoint` esté vacío la tarjeta está en **modo prueba**: `…/?i=demo` (3 cupos) no guarda nada en el Excel.
 

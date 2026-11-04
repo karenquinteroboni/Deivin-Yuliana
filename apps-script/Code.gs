@@ -7,6 +7,8 @@
  *
  * El límite de cupos se valida AQUÍ (servidor), no solo en la página.
  */
+// URL pública de la tarjeta (termina en /). Cámbiala si cambia el dominio.
+const URL_TARJETA = 'https://karenquinteroboni.github.io/Deivin-Yuliana/';
 const HOJA_INVITADOS = 'Invitados';
 const HOJA_CONF = 'Confirmaciones';
 const ENCABEZADOS = ['Código', 'Invitado', 'Cupos', 'Asistirá', 'Personas', 'Mensaje', 'Fecha de respuesta'];
@@ -84,4 +86,58 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+/* ============ Utilidades dentro de la hoja ============ */
+
+// Menú "Invitación" al abrir la hoja
+function onOpen() {
+  SpreadsheetApp.getUi().createMenu('Invitación')
+    .addItem('Preparar hojas', 'prepararHojas')
+    .addItem('Generar códigos y enlaces', 'generarCodigos')
+    .addToUi();
+}
+
+// Crea las hojas con sus encabezados si aún no existen
+function prepararHojas() {
+  const ss = SpreadsheetApp.getActive();
+  let sh = ss.getSheetByName(HOJA_INVITADOS);
+  if (!sh) {
+    sh = ss.insertSheet(HOJA_INVITADOS);
+    sh.appendRow(['Código', 'Invitado / Familia', 'Cupos', 'Enlace personalizado']);
+    sh.setFrozenRows(1);
+    sh.getRange(1, 1, 1, 4).setFontWeight('bold');
+  }
+  hojaConf_();
+}
+
+// Para cada fila con nombre y cupos: crea un código único (si falta) y el enlace.
+// Valida que Cupos sea un entero >= 1. No cambia códigos ya existentes.
+function generarCodigos() {
+  prepararHojas();
+  const sh = SpreadsheetApp.getActive().getSheetByName(HOJA_INVITADOS);
+  const n = sh.getLastRow();
+  if (n < 2) { SpreadsheetApp.getUi().alert('Pega primero los invitados (columna B) y sus cupos (columna C).'); return; }
+  const datos = sh.getRange(2, 1, n - 1, 3).getValues();
+  const usados = {};
+  datos.forEach(f => { if (f[0]) usados[String(f[0]).toLowerCase()] = true; });
+  const ABC = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+  const errores = [];
+  const codigos = [], enlaces = [];
+  datos.forEach((f, i) => {
+    let [cod, nombre, cupos] = f;
+    if (!nombre) { codigos.push(['']); enlaces.push(['']); return; }
+    if (!(Number.isInteger(Number(cupos)) && Number(cupos) >= 1)) errores.push('Fila ' + (i + 2) + ': cupos inválidos');
+    if (!cod) {
+      do { cod = ''; for (let k = 0; k < 6; k++) cod += ABC.charAt(Math.floor(Math.random() * ABC.length)); }
+      while (usados[cod.toLowerCase()]);
+      usados[cod.toLowerCase()] = true;
+    }
+    codigos.push([cod]);
+    enlaces.push([URL_TARJETA + '?i=' + cod]);
+  });
+  sh.getRange(2, 1, codigos.length, 1).setValues(codigos);
+  sh.getRange(2, 4, enlaces.length, 1).setValues(enlaces);
+  sh.autoResizeColumns(1, 4);
+  SpreadsheetApp.getUi().alert(errores.length ? 'Listo, pero revisa:\n' + errores.join('\n') : 'Códigos y enlaces generados.');
 }

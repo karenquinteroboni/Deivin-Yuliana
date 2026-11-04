@@ -13,7 +13,7 @@ window.CONFIG = {
 
   // Enlace de la carpeta/álbum compartido donde los invitados suben fotos.
   // Al llenarlo aparece la sección "Comparte tus fotos" (y el QR, ver tools/make_qr.py).
-  photosUrl: "",
+  photosUrl: "https://photos.app.goo.gl/2QTvd4wyjFC3iQJy8",
 
   // Grupo de WhatsApp: solo se muestra después de que el invitado confirma que asistirá.
   groupUrl: "https://chat.whatsapp.com/JkqEx0Ol08tAOc05WUlJdV?s=cl&p=a&iam=2",
