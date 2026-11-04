@@ -59,6 +59,20 @@
 
   /* ---------- intro: sello → brillo → sobre → video ---------- */
   const intro = $('#intro'), env = $('#envelope'), seal = $('#seal'), video = $('#walkVideo');
+
+  // Líneas de pliegue y recorrido de brillo: se calculan en píxeles según el tamaño real del sobre
+  function layoutLines() {
+    const w = env.clientWidth, h = env.clientHeight; if (!w || !h) return;
+    const m = Math.round(w * .03), my = Math.round(w * .03), tip = h * .44, cx = w / 2;
+    $('#lines').setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const set = (id, d) => $(id).setAttribute('d', d);
+    set('#lnSeam', `M${m} ${my}L${cx} ${tip}L${w - m} ${my}`);
+    set('#lnFoldL', `M0 ${h}L${cx} ${tip}`); set('#lnFoldR', `M${w} ${h}L${cx} ${tip}`);
+    set('#lnFrame', `M${m} ${my}H${w - m}V${h - my}H${m}Z`);
+    set('#runL', `M${cx} ${tip}L${m} ${my}V${h - my}H${cx}`);
+    set('#runR', `M${cx} ${tip}L${w - m} ${my}V${h - my}H${cx}`);
+  }
+  layoutLines(); addEventListener('resize', layoutLines);
   let opened = false, finished = false;
 
   const sparks = () => {
