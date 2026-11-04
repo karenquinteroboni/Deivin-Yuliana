@@ -43,6 +43,17 @@
     renderRSVP();
   });
 
+  /* ---------- imágenes: un reintento y, si sigue fallando, se oculta el ícono roto ---------- */
+  const rescue = img => {
+    if (img.dataset.tried) { img.style.visibility = 'hidden'; return; }
+    img.dataset.tried = '1';
+    setTimeout(() => { img.src = img.src + (img.src.includes('?') ? '&' : '?') + 'r=1'; }, 1200);
+  };
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => rescue(img));
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) rescue(img);
+  });
+
   /* ---------- música ---------- */
   const music = $('#music'), musicBtn = $('#musicBtn');
   music.volume = 0.6;
@@ -159,7 +170,7 @@
 
   /* ---------- enlaces configurables ---------- */
   if (C.dressCodeUrl) $('#dressLink').href = C.dressCodeUrl;
-  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
+  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src + '?v=2'; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
 
   /* ---------- agregar al calendario (.ics) ---------- */
   $('#addCal').addEventListener('click', () => {
