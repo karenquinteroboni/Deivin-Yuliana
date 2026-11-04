@@ -39,7 +39,6 @@
 
   guestReady.then(g => {
     guest = g;
-    if (g && g.name) { const p = $('#letterFor'); p.textContent = 'Para ' + g.name; p.hidden = false; }
     renderRSVP();
   });
 
@@ -105,17 +104,22 @@
     env.classList.add('shimmer');                  // recorrido de brillo por la ornamentación
     await wait(2500);
     sparks();
+    const r = seal.getBoundingClientRect();        // la luz nace del sello
+    intro.style.setProperty('--fx', (r.left + r.width / 2) + 'px');
+    intro.style.setProperty('--fy', (r.top + r.height / 2) + 'px');
     env.classList.add('open');                     // se rompe el sello y se abre la solapa
-    await wait(2900);
-    intro.classList.add('leaving');
-    await wait(900);
-    startWalk();
+    await wait(450);
+    intro.classList.add('lit');                  // la luz crece hasta llenar la pantalla
+    video.load();
+    await wait(1250);
+    startWalk();                                   // con la pantalla en luz, entra el video
   }
   seal.addEventListener('click', openInvitation);
 
   function startWalk() {
     if (finished) return;
     intro.classList.add('walking');
+    intro.classList.remove('lit');               // la luz se disuelve y revela el video
     const go = video.play();
     video.addEventListener('ended', finish, { once: true });
     video.addEventListener('error', finish, { once: true });
@@ -238,7 +242,7 @@
 
   /* ---------- enlaces configurables ---------- */
   if (C.dressCodeUrl) $('#dressLink').href = C.dressCodeUrl;
-  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src + '?v=3'; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
+  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src + '?v=4'; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
 
   /* ---------- agregar al calendario (.ics) ---------- */
   $('#addCal').addEventListener('click', () => {

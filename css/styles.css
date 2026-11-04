@@ -94,7 +94,6 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
   animation:spark .9s ease-out forwards}
 @keyframes spark{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
 
-.intro.leaving .stage{transform:scale(1.5);opacity:0}
 
 /* video de apertura */
 .walk{position:absolute;inset:0;opacity:0;visibility:hidden;background:#000;transition:opacity 1.2s ease,visibility 1.2s}
@@ -140,15 +139,15 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 .sec::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:multiply;pointer-events:none}
 .sec>*:not(.wm),.bye>.reveal{position:relative}
 .hero+.sec{box-shadow:0 -1px 0 var(--gold-line)}
-.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=3) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
+.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=4) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
 
 /* fondo fijo que se transparenta (y se desenfoca) a través de cada hoja */
 .backdrop{position:fixed;inset:-30px;z-index:-1;pointer-events:none;filter:blur(6px) saturate(1.05);
   background:radial-gradient(circle at 18% 12%,#3a5fc4 0,transparent 38%),radial-gradient(circle at 88% 38%,#dcbd6e 0,transparent 26%),
     radial-gradient(circle at 12% 70%,#dcbd6e 0,transparent 22%),radial-gradient(circle at 80% 92%,#3a5fc4 0,transparent 40%),
     linear-gradient(180deg,#6d8ad2,#34519f)}
-.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=3) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
-.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=3) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=3) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=3) 104% 20%/auto 70vh no-repeat;opacity:.45}
+.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=4) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
+.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=4) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=4) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=4) 104% 20%/auto 70vh no-repeat;opacity:.45}
 
 /* ---- texto ---- */
 .eyebrow{font-family:var(--serif);font-weight:600;font-size:var(--fs-label);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);padding-left:.3em}
@@ -302,3 +301,14 @@ textarea::placeholder{color:#55608f;opacity:1}
 @keyframes glow{0%{filter:drop-shadow(0 0 0 #f6d77f)}40%{filter:drop-shadow(0 0 16px #f0c85a)}100%{filter:none}}
 .scratch-hint{font-style:italic;font-weight:500;color:var(--muted);margin-top:4px;transition:opacity .5s}
 .scratch.revealed+.scratch-hint{opacity:0;height:0;margin:0;overflow:hidden}
+
+/* ---- destello de luz al abrir: nace en el sello, llena la pantalla y se disuelve sobre el video ---- */
+.flash{position:absolute;inset:0;z-index:20;pointer-events:none;opacity:0;
+  background:radial-gradient(circle at var(--fx,50%) var(--fy,44%),#fffdf2 0,#fff3c4 14%,#f6d77f 30%,#ffe9a6 52%,#fff8e0 100%);
+  clip-path:circle(0 at var(--fx,50%) var(--fy,44%));transition:none}
+.intro.lit .flash{opacity:1;clip-path:circle(150vmax at var(--fx,50%) var(--fy,44%));transition:clip-path 1.25s cubic-bezier(.55,0,.35,1)}
+.intro.walking .flash{opacity:0;clip-path:circle(150vmax at var(--fx,50%) var(--fy,44%));transition:opacity 1.4s ease}
+.intro.lit .walk{transition:none}
+.intro.walking{transition:none}
+.intro.walking .walk{transition:none}
+.intro.walking .stage{visibility:hidden}
