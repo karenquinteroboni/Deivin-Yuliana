@@ -139,15 +139,15 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 .sec::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:multiply;pointer-events:none}
 .sec>*:not(.wm),.bye>.reveal{position:relative}
 .hero+.sec{box-shadow:0 -1px 0 var(--gold-line)}
-.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=4) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
+.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=5) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
 
 /* fondo fijo que se transparenta (y se desenfoca) a través de cada hoja */
 .backdrop{position:fixed;inset:-30px;z-index:-1;pointer-events:none;filter:blur(6px) saturate(1.05);
   background:radial-gradient(circle at 18% 12%,#3a5fc4 0,transparent 38%),radial-gradient(circle at 88% 38%,#dcbd6e 0,transparent 26%),
     radial-gradient(circle at 12% 70%,#dcbd6e 0,transparent 22%),radial-gradient(circle at 80% 92%,#3a5fc4 0,transparent 40%),
     linear-gradient(180deg,#6d8ad2,#34519f)}
-.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=4) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
-.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=4) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=4) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=4) 104% 20%/auto 70vh no-repeat;opacity:.45}
+.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=5) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
+.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=5) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=5) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=5) 104% 20%/auto 70vh no-repeat;opacity:.45}
 
 /* ---- texto ---- */
 .eyebrow{font-family:var(--serif);font-weight:600;font-size:var(--fs-label);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);padding-left:.3em}
@@ -263,7 +263,6 @@ textarea::placeholder{color:#55608f;opacity:1}
 .bye>img.bye-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;opacity:.5}
 .bye>.bye-tint{position:absolute;inset:0;background:linear-gradient(180deg,#07102acc 0%,#0a1a4a55 45%,#07102aee 100%)}
 .bye>.reveal{width:100%;max-width:560px}
-.bye-mono{width:min(54vw,200px);margin:0 auto 18px;opacity:.95;mix-blend-mode:screen}
 .bye .lead{color:#fff6e0;text-shadow:0 2px 18px #000a}
 .bye .names{color:#f6e3a6;text-shadow:0 2px 22px #000a;font-size:var(--fs-names);margin-top:8px}
 
@@ -312,3 +311,21 @@ textarea::placeholder{color:#55608f;opacity:1}
 .intro.walking{transition:none}
 .intro.walking .walk{transition:none}
 .intro.walking .stage{visibility:hidden}
+
+/* ---- iniciales D y Y con la tipografía del monograma (Bodoni Moda) ---- */
+.names .ini,.walk-title .ini{font-family:'Bodoni Moda','Playfair Display',Georgia,serif;font-style:normal;font-weight:600;font-size:1.08em;margin:0;letter-spacing:0;line-height:1}
+
+/* ---- cierre: nombres en su posición, logo debajo y sin sombra ---- */
+.bye{align-items:flex-start}
+.bye>.reveal{padding-top:54vh;padding-top:54svh}
+.bye-mono{display:block;width:min(54vw,210px);height:auto;margin:30px auto 0;opacity:1;filter:none;mix-blend-mode:normal}
+
+/* computador (pantalla horizontal): texto abajo para no tapar las caras */
+@media (min-aspect-ratio:1/1){
+  .bye{align-items:flex-end;padding-bottom:28px}
+  .bye>.reveal{padding-top:0}
+  .bye>img.bye-bg{object-position:50% 36%}
+  .bye .lead{font-size:20px}
+  .bye .names{font-size:clamp(44px,6vw,56px);margin-top:4px}
+  .bye-mono{width:118px;margin-top:14px}
+}
