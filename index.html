@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deivin & Yuliana · Nos casamos</title>
+<meta name="description" content="Deivin & Yuliana te invitan a su boda · 20 de marzo de 2027 · Ibagué, Tolima.">
+<meta name="theme-color" content="#050b1e">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Deivin & Yuliana · Nos casamos">
+<meta property="og:description" content="Con amor y mucha ilusión, te invitamos a celebrar con nosotros · 20.03.2027">
+<meta property="og:image" content="https://karenquinteroboni.github.io/Deivin-Yuliana/assets/img/og.jpg">
+<link rel="preload" as="image" href="assets/img/seal.webp?v=8">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="locked">
+
+<!-- Símbolos SVG reutilizables: ramita botánica -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3dc9b"/><stop offset=".5" stop-color="#c9a24d"/><stop offset="1" stop-color="#9b7a2e"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ===================== INTRO: SOBRE + SELLO ===================== -->
+<div id="intro" class="intro" role="dialog" aria-label="Invitación de boda">
+  <div class="stars" aria-hidden="true"></div>
+
+  <div class="stage">
+    <div class="envelope" id="envelope">
+      <div class="env-back"></div>
+
+      <div class="flap" id="flap">
+        <div class="flap-face flap-front"><img class="orn orn-top" src="assets/img/orn-top.svg?v=8" alt=""></div>
+        <div class="flap-face flap-inner"></div>
+      </div>
+      <div class="pocket"></div>
+
+      <img class="orn orn-side orn-left" src="assets/img/orn-side.svg?v=8" alt="">
+      <img class="orn orn-side orn-right" src="assets/img/orn-side.svg?v=8" alt="">
+      <img class="orn orn-bottom" src="assets/img/orn-bottom.svg?v=8" alt="">
+
+      <!-- líneas de pliegue + luces que recorren el sobre desde el sello (se dimensionan por JS) -->
+      <svg class="lines" id="lines" aria-hidden="true">
+        <defs><filter id="glow" filterUnits="userSpaceOnUse" x="-40" y="-40" width="2000" height="3000"><feGaussianBlur stdDeviation="3.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <g class="l-static" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path id="lnSeam" stroke="#c9d0e4" stroke-width="1.2"/>
+          <path id="lnFoldL" stroke="#dde2ef" stroke-width="1"/>
+          <path id="lnFoldR" stroke="#dde2ef" stroke-width="1"/>
+          <path id="lnFrame" stroke="#d8c48a" stroke-width=".9" opacity=".75"/>
+        </g>
+        <g class="o-shine" fill="none" stroke="#e6bf5a" stroke-width="3.4" stroke-linecap="round" filter="url(#glow)">
+          <path id="runL" pathLength="100"/>
+          <path id="runR" pathLength="100"/>
+        </g>
+      </svg>
+
+      <button class="seal" id="seal" type="button" aria-label="Abrir invitación: toca el sello">
+        <img src="assets/img/seal.webp?v=8" alt="Sello de lacre con las iniciales D y Y" width="260" height="270">
+        <span class="seal-ring" aria-hidden="true"></span>
+      </button>
+      <p class="hint" id="hint">Toca el sello para abrir</p>
+    </div>
+  </div>
+
+  <!-- Destello de luz al abrir el sobre -->
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <!-- Video de apertura -->
+  <div class="walk" id="walk" aria-hidden="true">
+    <video id="walkVideo" muted playsinline preload="auto" poster="assets/img/caminata-poster.jpg?v=8">
+      <source src="assets/media/caminata.mp4?v=8" type="video/mp4">
+    </video>
+    <div class="walk-shade"></div>
+    <p class="walk-title"><span class="ini">D</span>eivin <span>&amp;</span> <span class="ini">Y</span>uliana</p>
+    <button class="skip" id="skip" type="button">Saltar</button>
+  </div>
+</div>
+
+<audio id="music" src="assets/media/musica.mp3?v=8" loop preload="auto"></audio>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<!-- ===================== CONTROLES ===================== -->
+<div class="topbar" id="topbar">
+  <button class="icon-btn" id="musicBtn" type="button" aria-label="Pausar música" aria-pressed="true">
+    <svg viewBox="0 0 24 24" class="i-on"><path d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="18" r="2.5" fill="currentColor"/><circle cx="17" cy="16" r="2.5" fill="currentColor"/></svg>
+    <svg viewBox="0 0 24 24" class="i-off"><path d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="18" r="2.5" fill="currentColor"/><circle cx="17" cy="16" r="2.5" fill="currentColor"/><path d="M3 3l18 18" stroke="currentColor" stroke-width="1.6"/></svg>
+  </button>
+  <button class="icon-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+    <svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+</div>
+
+<nav class="menu" id="menu" aria-label="Menú de navegación" hidden>
+  <img class="menu-mono" src="assets/img/monogram.webp?v=8" alt="" width="120">
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#nos-casamos">Nos casamos</a></li>
+    <li><a href="#cuenta">Cuenta regresiva</a></li>
+    <li><a href="#evento">El evento</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="#dresscode">Dress code</a></li>
+    <li><a href="#regalos">Lluvia de sobres</a></li>
+    <li><a href="#confirmar">Confirmar asistencia</a></li>
+    <li id="navFotos" hidden><a href="#fotos">Comparte tus fotos</a></li>
+  </ul>
+</nav>
+
+<!-- ===================== TARJETA ===================== -->
+<main id="card">
+
+  <!-- PORTADA -->
+  <section id="inicio" class="hero">
+    <img class="hero-bg" src="assets/img/playa.jpg?v=8" alt="Deivin y Yuliana abrazados al atardecer en la playa">
+    <div class="hero-shade"></div>
+    <div class="hero-in reveal">
+      <p class="eyebrow">Con amor y mucha ilusión</p>
+      <h1 class="names"><span class="ini">D</span>eivin <span>&amp;</span> <span class="ini">Y</span>uliana</h1>
+      <p class="date-line">20 · 03 · 2027</p>
+      <p class="phrase">Nuestro lugar favorito<br>siempre será juntos.</p>
+    </div>
+    <a class="scroll-cue" href="#nos-casamos" aria-label="Continuar"><span></span></a>
+  </section>
+
+  <!-- NOS CASAMOS -->
+  <section id="nos-casamos" class="sec sec-story">
+    <div class="wm" aria-hidden="true"></div>
+    <div class="frame reveal has-relief">
+      <div class="relief" aria-hidden="true">
+        <img class="rl rl-l" src="assets/img/orn-side.svg?v=8" alt="">
+        <img class="rl rl-r" src="assets/img/orn-side.svg?v=8" alt="">
+      </div>
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <figure class="arch"><img src="assets/img/pareja.jpg?v=8" alt="Deivin y Yuliana" loading="lazy"></figure>
+      <h2 class="sec-title">Nos casamos</h2>
+      <p class="lead">Dos corazones, una promesa.<br>Y una historia que apenas comienza.</p>
+      <p class="body">Con amor y la ilusión de compartir una vida juntos, hemos decidido unir nuestros caminos para siempre y celebrar el comienzo de una nueva etapa, un día destinado a permanecer por siempre en nuestros corazones.</p>
+    </div>
+  </section>
+
+  <!-- CUENTA REGRESIVA -->
+  <section id="cuenta" class="sec sec-count">
+    <div class="wm" aria-hidden="true"></div>
+    <div class="reveal">
+      <p class="eyebrow">Faltan</p>
+      <div class="scratch" id="scratch">
+        <div class="count" id="count" role="timer" aria-live="off">
+          <div><b id="cD">--</b><span>días</span></div>
+          <div><b id="cH">--</b><span>horas</span></div>
+          <div><b id="cM">--</b><span>min</span></div>
+          <div><b id="cS">--</b><span>seg</span></div>
+        </div>
+        <canvas id="foil" role="button" tabindex="0" aria-label="Cuenta regresiva cubierta. Raspa con el dedo o presiona Enter para descubrirla"></canvas>
+      </div>
+      <p class="scratch-hint" id="scratchHint">Raspa con tu dedo para descubrir cuánto falta</p>
+      <p class="count-msg" id="countMsg">para el día más especial</p>
+    </div>
+  </section>
+
+  <!-- EVENTO -->
+  <section id="evento" class="sec sec-event">
+    <div class="wm" aria-hidden="true"></div>
+    <h2 class="sec-title reveal">El evento</h2>
+    <p class="sec-sub reveal">Sábado 20 de marzo de 2027 · Ibagué, Tolima</p>
+
+    <div class="cards">
+      <article class="frame card reveal">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <p class="card-k">Ceremonia religiosa</p>
+        <p class="time">4:00 <small>p. m.</small></p>
+        <h3>Catedral Metropolitana<br>de la Inmaculada Concepción</h3>
+        <p class="addr">Calle 10 #1-129, Centro.<br>Ibagué, Tolima.</p>
+      </article>
+      <article class="frame card reveal">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <p class="card-k">Recepción</p>
+        <p class="time">6:00 <small>p. m.</small></p>
+        <h3>Finca Villa Laura</h3>
+        <p class="addr">Vía al Totumo, Kilómetro 2.<br>Ibagué, Tolima.</p>
+      </article>
+    </div>
+
+    <div class="notes reveal">
+      <div class="note">
+        <img class="emblem sm" src="assets/img/icon-dulces-suenos.webp?v=8" alt="" width="88" height="85">
+        <h4>Niños, dulces sueños</h4>
+        <p>Para que todos nuestros invitados —incluidos los papás— puedan disfrutar de la fiesta al máximo, hemos optado por una recepción exclusivamente para adultos.</p>
+      </div>
+      <div class="note">
+        <img class="emblem sm" src="assets/img/icon-parqueadero.webp?v=8" alt="" width="88" height="85">
+        <h4>Parqueadero disponible</h4>
+        <p>Contaremos con disponibilidad de parqueadero.</p>
+      </div>
+    </div>
+    <button class="btn ghost reveal" id="addCal" type="button">Agregar al calendario</button>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section id="ubicacion" class="sec sec-map">
+    <div class="wm" aria-hidden="true"></div>
+    <h2 class="sec-title reveal">Ubicación</h2>
+    <div class="cards">
+      <article class="frame card reveal">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <p class="card-k">Ceremonia · 4:00 p. m.</p>
+        <div class="map"><iframe loading="lazy" title="Mapa de la ceremonia" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Catedral%20Metropolitana%20de%20la%20Inmaculada%20Concepci%C3%B3n%2C%20Calle%2010%20%231-129%2C%20Ibagu%C3%A9%2C%20Tolima&amp;output=embed"></iframe></div>
+        <a class="btn" href="https://maps.app.goo.gl/79RzYHotFCqVRmhW9" target="_blank" rel="noopener">Cómo llegar</a>
+      </article>
+      <article class="frame card reveal">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <p class="card-k">Recepción · 6:00 p. m.</p>
+        <div class="map"><iframe loading="lazy" title="Mapa de la recepción" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Finca%20Villa%20Laura%2C%20V%C3%ADa%20al%20Totumo%20Km%202%2C%20Ibagu%C3%A9%2C%20Tolima&amp;output=embed"></iframe></div>
+        <a class="btn" href="https://maps.app.goo.gl/mZXPFWo8woz5Bvjv7" target="_blank" rel="noopener">Cómo llegar</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section id="dresscode" class="sec sec-dress">
+    <div class="wm" aria-hidden="true"></div>
+    <h2 class="sec-title reveal">Dress code</h2>
+    <p class="sec-sub reveal">Black tie · Etiqueta</p>
+    <div class="frame reveal dress">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="dress-grid">
+        <div><img class="emblem" src="assets/img/icon-damas.webp?v=8" alt="" width="112" height="108"><p class="card-k">Damas</p><p>Vestido largo de gala.</p></div>
+        <div><img class="emblem" src="assets/img/icon-caballeros.webp?v=8" alt="" width="112" height="108"><p class="card-k">Caballeros</p><p>Esmoquin negro, camisa blanca y corbata negra.</p></div>
+      </div>
+      <p class="card-k reserved-t">Colores reservados</p>
+      <ul class="reserved">
+        <li><i style="background:#f8f6f0"></i><span><b>Blanco</b> y sus tonalidades, para la novia.</span></li>
+        <li><i style="background:#0d1a48;border-color:#c9a24d"></i><span><b>Azul noche</b> y sus tonalidades, para los caballeros y damas de honor.</span></li>
+        <li><i style="background:#e8d8b4"></i><span><b>Champaña</b>, color especial para los padres que entregarán a los novios.</span></li>
+      </ul>
+      <a class="btn" id="dressLink" href="https://pin.it/5KP9RG96m" target="_blank" rel="noopener">Ver inspiración de vestuario</a>
+    </div>
+  </section>
+
+  <!-- LLUVIA DE SOBRES -->
+  <section id="regalos" class="sec sec-gift">
+    <div class="wm" aria-hidden="true"></div>
+    <div class="frame reveal slim">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <img class="emblem sm" src="assets/img/icon-sobres.webp?v=8" alt="" width="88" height="85">
+      <h2 class="sec-title small">Lluvia de sobres</h2>
+      <p class="body">Con cariño, hemos elegido recibir nuestros obsequios en lluvia de sobres. Agradecemos que nos acompañes con este detalle en el comienzo de este nuevo capítulo de nuestra historia juntos.</p>
+    </div>
+  </section>
+
+  <!-- CONFIRMACIÓN -->
+  <section id="confirmar" class="sec sec-rsvp">
+    <div class="wm" aria-hidden="true"></div>
+    <h2 class="sec-title reveal">Confirma tu asistencia</h2>
+    <div class="frame reveal rsvp" id="rsvp" aria-live="polite">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div id="rsvpBody"><p class="body">Cargando tu invitación…</p></div>
+    </div>
+  </section>
+
+  <!-- FOTOS (aparece al configurar photosUrl) -->
+  <section id="fotos" class="sec sec-photos" hidden>
+    <div class="wm" aria-hidden="true"></div>
+    <div class="frame reveal slim">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <h2 class="sec-title small">Comparte tus fotos</h2>
+      <p class="body">Escanea el código o toca el botón y sube las fotos que tomes durante la celebración.</p>
+      <img class="qr" data-src="assets/img/qr-fotos.png" alt="Código QR para subir fotos" width="180" height="180" onerror="this.remove()">
+      <a class="btn" id="photosLink" href="#" target="_blank" rel="noopener">Subir fotos</a>
+    </div>
+  </section>
+
+  <!-- DESPEDIDA -->
+  <footer class="bye">
+    <img class="bye-bg" src="assets/img/pareja.jpg?v=8" alt="">
+    <div class="bye-tint" aria-hidden="true"></div>
+    <div class="reveal">
+      <p class="lead">Te esperamos con el corazón</p>
+      <p class="names small"><span class="ini">D</span>eivin <span>&amp;</span> <span class="ini">Y</span>uliana</p>
+      <img class="bye-mono" src="assets/img/monogram.webp?v=8" alt="Monograma D y Y" width="220">
+    </div>
+  </footer>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
