@@ -11,7 +11,7 @@
 <meta property="og:title" content="Deivin & Yuliana · Nos casamos">
 <meta property="og:description" content="Con amor y mucha ilusión, te invitamos a celebrar con nosotros · 20.03.2027">
 <meta property="og:image" content="https://karenquinteroboni.github.io/Deivin-Yuliana/assets/img/og.jpg">
-<link rel="preload" as="image" href="assets/img/seal.webp?v=2">
+<link rel="preload" as="image" href="assets/img/seal.webp?v=3">
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -23,20 +23,6 @@
     <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f3dc9b"/><stop offset=".5" stop-color="#c9a24d"/><stop offset="1" stop-color="#9b7a2e"/>
     </linearGradient>
-    <symbol id="leaf" viewBox="0 0 20 10"><path d="M0 5C5 -1 13 -1 20 5 13 11 5 11 0 5Z"/></symbol>
-    <symbol id="sprig" viewBox="0 0 120 60">
-      <path d="M2 50C30 48 70 40 118 14" fill="none" stroke="url(#goldG)" stroke-width="1.2" stroke-linecap="round"/>
-      <g fill="url(#goldG)">
-        <use href="#leaf" x="14"  y="30" width="20" height="10" transform="rotate(-35 24 35)"/>
-        <use href="#leaf" x="22"  y="48" width="20" height="10" transform="rotate(25 32 53)"/>
-        <use href="#leaf" x="40"  y="22" width="20" height="10" transform="rotate(-40 50 27)"/>
-        <use href="#leaf" x="46"  y="44" width="20" height="10" transform="rotate(20 56 49)"/>
-        <use href="#leaf" x="66"  y="14" width="20" height="10" transform="rotate(-45 76 19)"/>
-        <use href="#leaf" x="72"  y="36" width="20" height="10" transform="rotate(15 82 41)"/>
-        <use href="#leaf" x="92"  y="2"  width="20" height="10" transform="rotate(-50 102 7)"/>
-        <use href="#leaf" x="98"  y="22" width="20" height="10" transform="rotate(5 108 27)"/>
-      </g>
-    </symbol>
   </defs>
 </svg>
 
@@ -49,21 +35,21 @@
       <div class="env-back"></div>
 
       <div class="letter">
-        <img class="letter-mono" src="assets/img/seal.webp?v=2" alt="" width="120">
+        <img class="letter-mono" src="assets/img/seal.webp?v=3" alt="" width="120">
         <p class="letter-small">Con amor y mucha ilusión</p>
         <p class="letter-for" id="letterFor" hidden></p>
         <p class="letter-small">20 · 03 · 2027</p>
       </div>
 
       <div class="flap" id="flap">
-        <div class="flap-face flap-front"><img class="orn orn-top" src="assets/img/orn-top.svg?v=2" alt=""></div>
+        <div class="flap-face flap-front"><img class="orn orn-top" src="assets/img/orn-top.svg?v=3" alt=""></div>
         <div class="flap-face flap-inner"></div>
       </div>
       <div class="pocket"></div>
 
-      <img class="orn orn-side orn-left" src="assets/img/orn-side.svg?v=2" alt="">
-      <img class="orn orn-side orn-right" src="assets/img/orn-side.svg?v=2" alt="">
-      <img class="orn orn-bottom" src="assets/img/orn-bottom.svg?v=2" alt="">
+      <img class="orn orn-side orn-left" src="assets/img/orn-side.svg?v=3" alt="">
+      <img class="orn orn-side orn-right" src="assets/img/orn-side.svg?v=3" alt="">
+      <img class="orn orn-bottom" src="assets/img/orn-bottom.svg?v=3" alt="">
 
       <!-- líneas de pliegue + luces que recorren el sobre desde el sello (se dimensionan por JS) -->
       <svg class="lines" id="lines" aria-hidden="true">
@@ -81,7 +67,7 @@
       </svg>
 
       <button class="seal" id="seal" type="button" aria-label="Abrir invitación: toca el sello">
-        <img src="assets/img/seal.webp?v=2" alt="Sello de lacre con las iniciales D y Y" width="260" height="270">
+        <img src="assets/img/seal.webp?v=3" alt="Sello de lacre con las iniciales D y Y" width="260" height="270">
         <span class="seal-ring" aria-hidden="true"></span>
       </button>
       <p class="hint" id="hint">Toca el sello para abrir</p>
@@ -90,8 +76,8 @@
 
   <!-- Video de apertura -->
   <div class="walk" id="walk" aria-hidden="true">
-    <video id="walkVideo" muted playsinline preload="auto" poster="assets/img/caminata-poster.jpg?v=2">
-      <source src="assets/media/caminata.mp4?v=2" type="video/mp4">
+    <video id="walkVideo" muted playsinline preload="auto" poster="assets/img/caminata-poster.jpg?v=3">
+      <source src="assets/media/caminata.mp4?v=3" type="video/mp4">
     </video>
     <div class="walk-shade"></div>
     <p class="walk-title">Deivin <span>&amp;</span> Yuliana</p>
@@ -99,7 +85,7 @@
   </div>
 </div>
 
-<audio id="music" src="assets/media/musica.mp3?v=2" loop preload="auto"></audio>
+<audio id="music" src="assets/media/musica.mp3?v=3" loop preload="auto"></audio>
 
 <div class="backdrop" aria-hidden="true"></div>
 
@@ -115,7 +101,7 @@
 </div>
 
 <nav class="menu" id="menu" aria-label="Menú de navegación" hidden>
-  <img class="menu-mono" src="assets/img/monogram.webp?v=2" alt="" width="120">
+  <img class="menu-mono" src="assets/img/monogram.webp?v=3" alt="" width="120">
   <ul>
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#nos-casamos">Nos casamos</a></li>
@@ -134,7 +120,7 @@
 
   <!-- PORTADA -->
   <section id="inicio" class="hero">
-    <img class="hero-bg" src="assets/img/playa.jpg?v=2" alt="Deivin y Yuliana abrazados al atardecer en la playa">
+    <img class="hero-bg" src="assets/img/playa.jpg?v=3" alt="Deivin y Yuliana abrazados al atardecer en la playa">
     <div class="hero-shade"></div>
     <div class="hero-in reveal">
       <p class="eyebrow">Con amor y mucha ilusión</p>
@@ -148,11 +134,15 @@
   <!-- NOS CASAMOS -->
   <section id="nos-casamos" class="sec sec-story">
     <div class="wm" aria-hidden="true"></div>
-    <div class="frame reveal">
+    <div class="frame reveal has-relief">
+      <div class="relief" aria-hidden="true">
+        <img class="rl rl-l" src="assets/img/orn-side.svg?v=3" alt="">
+        <img class="rl rl-r" src="assets/img/orn-side.svg?v=3" alt="">
+        <img class="rl rl-b" src="assets/img/orn-bottom.svg?v=3" alt="">
+      </div>
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      <figure class="arch"><img src="assets/img/pareja.jpg?v=2" alt="Deivin y Yuliana" loading="lazy"></figure>
+      <figure class="arch"><img src="assets/img/pareja.jpg?v=3" alt="Deivin y Yuliana" loading="lazy"></figure>
       <h2 class="sec-title">Nos casamos</h2>
-      <svg class="sprig-div" viewBox="0 0 120 60" aria-hidden="true"><use href="#sprig"/></svg>
       <p class="lead">Dos corazones, una promesa.<br>Y una historia que apenas comienza.</p>
       <p class="body">Con amor y la ilusión de compartir una vida juntos, hemos decidido unir nuestros caminos para siempre y celebrar el comienzo de una nueva etapa, un día destinado a permanecer por siempre en nuestros corazones.</p>
     </div>
@@ -163,12 +153,16 @@
     <div class="wm" aria-hidden="true"></div>
     <div class="reveal">
       <p class="eyebrow">Faltan</p>
-      <div class="count" id="count" role="timer" aria-live="off">
-        <div><b id="cD">--</b><span>días</span></div>
-        <div><b id="cH">--</b><span>horas</span></div>
-        <div><b id="cM">--</b><span>min</span></div>
-        <div><b id="cS">--</b><span>seg</span></div>
+      <div class="scratch" id="scratch">
+        <div class="count" id="count" role="timer" aria-live="off">
+          <div><b id="cD">--</b><span>días</span></div>
+          <div><b id="cH">--</b><span>horas</span></div>
+          <div><b id="cM">--</b><span>min</span></div>
+          <div><b id="cS">--</b><span>seg</span></div>
+        </div>
+        <canvas id="foil" role="button" tabindex="0" aria-label="Cuenta regresiva cubierta. Raspa con el dedo o presiona Enter para descubrirla"></canvas>
       </div>
+      <p class="scratch-hint" id="scratchHint">Raspa con tu dedo para descubrir cuánto falta</p>
       <p class="count-msg" id="countMsg">para el día más especial</p>
     </div>
   </section>
@@ -198,12 +192,12 @@
 
     <div class="notes reveal">
       <div class="note">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+        <img class="emblem sm" src="assets/img/icon-dulces-suenos.webp?v=3" alt="" width="88" height="85">
         <h4>Niños, dulces sueños</h4>
         <p>Para que todos nuestros invitados —incluidos los papás— puedan disfrutar de la fiesta al máximo, hemos optado por una recepción exclusivamente para adultos.</p>
       </div>
       <div class="note">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M10 17V7h3a3 3 0 0 1 0 6h-3" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+        <img class="emblem sm" src="assets/img/icon-parqueadero.webp?v=3" alt="" width="88" height="85">
         <h4>Parqueadero disponible</h4>
         <p>Contaremos con disponibilidad de parqueadero.</p>
       </div>
@@ -241,8 +235,8 @@
     <div class="frame reveal dress">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="dress-grid">
-        <div><p class="card-k">Damas</p><p>Vestido largo de gala.</p></div>
-        <div><p class="card-k">Caballeros</p><p>Esmoquin negro, camisa blanca y corbata negra.</p></div>
+        <div><img class="emblem" src="assets/img/icon-damas.webp?v=3" alt="" width="112" height="108"><p class="card-k">Damas</p><p>Vestido largo de gala.</p></div>
+        <div><img class="emblem" src="assets/img/icon-caballeros.webp?v=3" alt="" width="112" height="108"><p class="card-k">Caballeros</p><p>Esmoquin negro, camisa blanca y corbata negra.</p></div>
       </div>
       <p class="card-k reserved-t">Colores reservados</p>
       <ul class="reserved">
@@ -259,7 +253,7 @@
     <div class="wm" aria-hidden="true"></div>
     <div class="frame reveal slim">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      <svg class="env-ico" viewBox="0 0 48 34" aria-hidden="true"><rect x="1" y="1" width="46" height="32" rx="3" fill="none" stroke="url(#goldG)" stroke-width="1.2"/><path d="M1 3l23 17L47 3" fill="none" stroke="url(#goldG)" stroke-width="1.2"/></svg>
+      <img class="emblem sm" src="assets/img/icon-sobres.webp?v=3" alt="" width="88" height="85">
       <h2 class="sec-title small">Lluvia de sobres</h2>
       <p class="body">Nos hace muy felices que compartas este día con nosotros. Si deseas regalarnos algo, en la recepción encontrarás el buzón de la lluvia de sobres.</p>
     </div>
@@ -289,10 +283,10 @@
 
   <!-- DESPEDIDA -->
   <footer class="bye">
-    <img class="bye-bg" src="assets/img/pareja.jpg?v=2" alt="" loading="lazy">
+    <img class="bye-bg" src="assets/img/pareja.jpg?v=3" alt="">
     <div class="bye-tint" aria-hidden="true"></div>
     <div class="reveal">
-      <img class="bye-mono" src="assets/img/monogram.webp?v=2" alt="Monograma D y Y" width="220">
+      <img class="bye-mono" src="assets/img/monogram.webp?v=3" alt="Monograma D y Y" width="220">
       <p class="lead">Te esperamos con el corazón</p>
       <p class="names small">Deivin <span>&amp;</span> Yuliana</p>
     </div>

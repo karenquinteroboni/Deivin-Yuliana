@@ -103,7 +103,6 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
 .walk-shade{position:absolute;inset:0;background:linear-gradient(0deg,#050b1ecc,transparent 45%),linear-gradient(180deg,#050b1e88,transparent 30%)}
 .walk-title{position:absolute;left:0;right:0;bottom:16vh;text-align:center;font-family:var(--script);font-size:clamp(42px,11.5vw,64px);line-height:1.1;
   color:var(--gold-l);text-shadow:0 2px 24px #000a;opacity:0;transform:translateY(14px);transition:opacity 1.4s,transform 1.4s}
-.walk-title span{font-family:var(--serif);font-style:italic;font-size:.6em;margin:0 .1em}
 .intro.walking .walk-title{opacity:1;transform:none;transition-delay:1.6s}
 .skip{position:absolute;right:max(16px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
   padding:10px 16px;border:1px solid #f1d98f66;border-radius:99px;color:var(--gold-l);background:#050b1e66;backdrop-filter:blur(4px)}
@@ -141,15 +140,15 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 .sec::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.5;mix-blend-mode:multiply;pointer-events:none}
 .sec>*:not(.wm),.bye>.reveal{position:relative}
 .hero+.sec{box-shadow:0 -1px 0 var(--gold-line)}
-.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=2) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
+.wm{position:absolute;inset:0;pointer-events:none;background:url(../assets/img/monogram.webp?v=3) center 50%/min(92vw,640px) no-repeat;mix-blend-mode:multiply;opacity:.1}
 
 /* fondo fijo que se transparenta (y se desenfoca) a través de cada hoja */
 .backdrop{position:fixed;inset:-30px;z-index:-1;pointer-events:none;filter:blur(6px) saturate(1.05);
   background:radial-gradient(circle at 18% 12%,#3a5fc4 0,transparent 38%),radial-gradient(circle at 88% 38%,#dcbd6e 0,transparent 26%),
     radial-gradient(circle at 12% 70%,#dcbd6e 0,transparent 22%),radial-gradient(circle at 80% 92%,#3a5fc4 0,transparent 40%),
     linear-gradient(180deg,#6d8ad2,#34519f)}
-.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=2) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
-.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=2) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=2) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=2) 104% 20%/auto 70vh no-repeat;opacity:.45}
+.backdrop::before{content:"";position:absolute;inset:0;background:url(../assets/img/monogram.webp?v=3) 50% 46%/min(80vw,560px) no-repeat;opacity:.5}
+.backdrop::after{content:"";position:absolute;inset:0;background:url(../assets/img/orn-bottom.svg?v=3) 50% 8%/min(92vw,520px) no-repeat,url(../assets/img/orn-side.svg?v=3) -4% 60%/auto 70vh no-repeat,url(../assets/img/orn-side.svg?v=3) 104% 20%/auto 70vh no-repeat;opacity:.45}
 
 /* ---- texto ---- */
 .eyebrow{font-family:var(--serif);font-weight:600;font-size:var(--fs-label);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);padding-left:.3em}
@@ -160,7 +159,7 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 .lead{font-size:var(--fs-lead);font-style:italic;font-weight:500;line-height:1.4;color:var(--ink-h)}
 .body{max-width:34em;margin:16px auto 0;color:var(--text)}
 .names{font-family:var(--script);font-weight:400;line-height:1.1;color:var(--gold-ink)}
-.names span{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.62em;margin:0 .08em}
+.names span,.walk-title span{font-family:var(--script);font-style:normal;font-weight:400;font-size:.92em;margin:0 .1em;color:inherit}
 
 /* marco ornamental casi transparente */
 .frame{position:relative;max-width:560px;margin:0 auto;padding:44px 26px;border:1px solid #c9a24d99;border-radius:6px;background:#ffffff59;box-shadow:0 14px 34px #1d2f7014}
@@ -180,7 +179,6 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 .hero-in{position:relative;padding:clamp(78px,13vh,130px) 20px 0;width:100%}
 .hero .eyebrow{color:#f4e2a8}
 .hero .names{font-size:var(--fs-names);margin:12px 0 8px;color:#f6e3a6;text-shadow:0 3px 22px #000c}
-.hero .names span{color:#fff6e0}
 .date-line{font-weight:600;letter-spacing:.42em;font-size:calc(var(--fs-body) - 2px);color:#fff6e0;margin-bottom:20px;padding-left:.42em;text-shadow:0 2px 12px #000c}
 .phrase{font-style:italic;font-weight:500;font-size:var(--fs-lead);line-height:1.4;color:#fff6e0;text-shadow:0 2px 14px #000}
 .scroll-cue{position:absolute;left:50%;bottom:22px;width:22px;height:36px;margin-left:-11px;border:1px solid #f1d98faa;border-radius:12px}
@@ -190,7 +188,6 @@ body{font-size:var(--fs-body);font-weight:500;line-height:1.65}
 /* nos casamos */
 .arch{width:min(70%,290px);aspect-ratio:3/4;margin:0 auto 30px;border-radius:999px 999px 6px 6px;overflow:hidden;border:1px solid var(--gold-line);padding:7px;background:#0000}
 .arch img{width:100%;height:100%;object-fit:cover;border-radius:999px 999px 3px 3px;object-position:50% 25%}
-.sprig-div{width:96px;height:48px;margin:2px auto 12px;display:block}
 
 /* cuenta regresiva */
 .sec-count{padding:72px 16px}
@@ -270,7 +267,6 @@ textarea::placeholder{color:#55608f;opacity:1}
 .bye-mono{width:min(54vw,200px);margin:0 auto 18px;opacity:.95;mix-blend-mode:screen}
 .bye .lead{color:#fff6e0;text-shadow:0 2px 18px #000a}
 .bye .names{color:#f6e3a6;text-shadow:0 2px 22px #000a;font-size:var(--fs-names);margin-top:8px}
-.bye .names span{color:#fff6e0}
 
 /* animaciones de entrada */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease}
@@ -279,3 +275,30 @@ textarea::placeholder{color:#55608f;opacity:1}
   *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}.reveal{opacity:1;transform:none}
 }
+
+/* ---- relieve floral sutil (igual al de la apertura) en "Nos casamos" ---- */
+.relief{position:absolute;inset:0;overflow:hidden;border-radius:6px;pointer-events:none}
+.rl{position:absolute;display:block;max-width:none}
+.rl-l{left:-52px;top:8%;height:60%}
+.rl-r{right:-52px;top:8%;height:60%;transform:scaleX(-1)}
+.rl-b{left:50%;bottom:-3%;width:96%;transform:translateX(-50%)}
+.has-relief{padding-bottom:128px}
+.has-relief>*:not(.relief):not(.corner){position:relative;z-index:1}
+
+/* ---- íconos ---- */
+.emblem{display:block;width:112px;height:auto;margin:0 auto 12px;filter:drop-shadow(0 6px 9px #5a3d0a26)}
+.emblem.sm{width:88px;margin-bottom:8px}
+.dress-grid{gap:30px}
+
+/* ---- cuenta regresiva raspable ---- */
+.scratch{position:relative;max-width:460px;margin:22px auto 10px;border-radius:4px}
+.scratch .count{margin:0 auto}
+#foil{position:absolute;inset:0;width:100%;height:100%;border-radius:4px;touch-action:none;cursor:crosshair;transition:opacity .9s ease;-webkit-user-select:none;user-select:none}
+.scratch:not(.revealed)::after{content:"";position:absolute;inset:0;border-radius:4px;pointer-events:none;
+  background:linear-gradient(110deg,transparent 38%,#ffffff8c 50%,transparent 62%);background-size:260% 100%;animation:sweep 3.4s ease-in-out infinite}
+@keyframes sweep{from{background-position:130% 0}to{background-position:-130% 0}}
+.scratch.revealed #foil{opacity:0;pointer-events:none}
+.scratch.revealed .count{animation:glow 1.2s ease-out}
+@keyframes glow{0%{filter:drop-shadow(0 0 0 #f6d77f)}40%{filter:drop-shadow(0 0 16px #f0c85a)}100%{filter:none}}
+.scratch-hint{font-style:italic;font-weight:500;color:var(--muted);margin-top:4px;transition:opacity .5s}
+.scratch.revealed+.scratch-hint{opacity:0;height:0;margin:0;overflow:hidden}

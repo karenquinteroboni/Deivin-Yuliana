@@ -151,6 +151,74 @@
   }
   tick(); setInterval(tick, 1000);
 
+  /* ---------- cuenta regresiva raspable ---------- */
+  (() => {
+    const wrap = $('#scratch'), cv = $('#foil');
+    if (!wrap || !cv) return;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    let revealed = false, drawing = false, last = null, w = 0, h = 0, dpr = 1, checkTimer = 0;
+
+    function paintFoil() {
+      dpr = Math.min(window.devicePixelRatio || 1, 3);
+      const r = wrap.getBoundingClientRect(); w = r.width; h = r.height;
+      if (!w || !h) return;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.globalCompositeOperation = 'source-over';
+      const g = ctx.createLinearGradient(0, 0, w, h);
+      [[0, '#f1dc9c'], [.28, '#d6b35f'], [.5, '#f7eabd'], [.72, '#c79d41'], [1, '#e8cc80']].forEach(([o, c]) => g.addColorStop(o, c));
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      for (let i = 0; i < w * h / 14; i++) {                       // grano metálico
+        ctx.fillStyle = Math.random() < .5 ? 'rgba(255,255,255,.16)' : 'rgba(110,80,10,.07)';
+        ctx.fillRect(Math.random() * w, Math.random() * h, 1.2, 1.2);
+      }
+      ctx.strokeStyle = 'rgba(255,255,255,.22)'; ctx.lineWidth = 1;   // veta diagonal
+      for (let x = -h; x < w; x += 9) { ctx.beginPath(); ctx.moveTo(x, h); ctx.lineTo(x + h, 0); ctx.stroke(); }
+      ctx.fillStyle = '#4d3707'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = '600 15px "Cormorant Garamond", Georgia, serif';
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '4px';
+      ctx.fillText('RASPA PARA DESCUBRIR', w / 2 + 2, h / 2);
+    }
+
+    const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    function scratch(from, to) {
+      const radius = Math.max(18, Math.round(w * .05));
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.strokeStyle = '#000';                                   // opaco: borra por completo
+      ctx.lineWidth = radius * 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(from[0], from[1]); ctx.lineTo(to[0], to[1]); ctx.stroke();
+    }
+    function cleared() {                                          // fracción raspada (muestreo en rejilla)
+      const d = ctx.getImageData(0, 0, cv.width, cv.height).data, step = 6 * dpr | 0;
+      let t = 0, n = 0;
+      for (let y = 0; y < cv.height; y += step) for (let x = 0; x < cv.width; x += step) { n++; if (d[(y * cv.width + x) * 4 + 3] < 40) t++; }
+      return t / n;
+    }
+    function reveal() {
+      if (revealed) return; revealed = true;
+      wrap.classList.add('revealed'); cv.removeAttribute('tabindex');
+      setTimeout(() => cv.remove(), 1000);
+    }
+    const scheduleCheck = () => { clearTimeout(checkTimer); checkTimer = setTimeout(() => { if (cleared() > .55) reveal(); }, 120); };
+
+    cv.addEventListener('pointerdown', e => {
+      if (revealed) return;
+      drawing = true; cv.setPointerCapture(e.pointerId); last = pos(e); scratch(last, last); e.preventDefault();
+    });
+    cv.addEventListener('pointermove', e => {
+      if (!drawing || revealed) return;
+      const p = pos(e); scratch(last, p); last = p; scheduleCheck();
+    });
+    const stop = () => { drawing = false; scheduleCheck(); };
+    cv.addEventListener('pointerup', stop); cv.addEventListener('pointercancel', stop);
+    cv.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
+
+    paintFoil();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!revealed && !drawing) paintFoil(); });
+    let lastW = w;
+    addEventListener('resize', () => { if (!revealed && !drawing && Math.abs(wrap.clientWidth - lastW) > 1) { lastW = wrap.clientWidth; paintFoil(); } });
+  })();
+
   /* ---------- menú ---------- */
   const menu = $('#menu'), menuBtn = $('#menuBtn');
   const toggleMenu = open => {
@@ -170,7 +238,7 @@
 
   /* ---------- enlaces configurables ---------- */
   if (C.dressCodeUrl) $('#dressLink').href = C.dressCodeUrl;
-  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src + '?v=2'; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
+  if (C.photosUrl) { const q = $('.qr'); q.src = q.dataset.src + '?v=3'; $('#fotos').hidden = false; $('#navFotos').hidden = false; $('#photosLink').href = C.photosUrl; }
 
   /* ---------- agregar al calendario (.ics) ---------- */
   $('#addCal').addEventListener('click', () => {
